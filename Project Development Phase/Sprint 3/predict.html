@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>கடன் கணிப்பு</title>
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <header class="speaker-form-header">
+      <h1>SMART LOAN PREDICTION</h1>
+      <p>Welcome {{project_name}}!!!</p>
+      <p><em>கடன் வாங்க எங்களிடம் வாங்க!!!</em></p>
+    </header>
+    <form action="{{ url_for('evaluate') }}" method="post" class="speaker-form">
+      <!-- <div class="form-row">
+        <label for="full-name">Name</label>
+        <input id="full-name" name="full-name" type="text" required/>
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="joe@example.com"
+        />
+      </div>
+      <fieldset class="legacy-form-row">
+        <legend>Type of Talk</legend>
+        <input
+          id="talk-type-1"
+          name="talk-type"
+          type="radio"
+          value="main-stage"
+        />
+        <label for="talk-type-1" class="radio-label">Main Stage</label>
+        <input
+          id="talk-type-2"
+          name="talk-type"
+          type="radio"
+          value="workshop"
+          checked
+        />
+        <label for="talk-type-2" class="radio-label">Workshop</label>
+      </fieldset> -->
+      <div class="form-row">
+        <label for="Gender">Gender</label>
+        <select id="Gender" name="Gender" required>
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Married">Married</label>
+        <select id="Married" name="Married" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Dependents">Dependents</label>
+        <input
+          id="Dependents"
+          name="Dependents"
+          type="number" 
+          min="0"
+          max="3"
+          placeholder="No of Dependents on you....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Education">Education</label>
+        <select id="Education" name="Education" required>
+          <option value="0">Graduate</option>
+          <option value="1">Not Graduate</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Self Employed">Self Employed</label>
+        <select id="Self Employed" name="Self Employed" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Applicant Income">Applicant Income</label>
+        <input
+          id="Applicant Income"
+          name="Applicant Income"
+          type="number" 
+          min="0"
+          placeholder="Your Income....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Co Applicant Income">Co Applicant Income</label>
+        <input
+          id="Co Applicant Income"
+          name="Co Applicant Income"
+          type="number" 
+          min="0"
+          placeholder="Your Co Applicant Income....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Loan Amount">Loan Amount</label>
+        <input
+          id="Loan Amount"
+          name="Loan Amount"
+          type="number" 
+          min="0"
+          placeholder="Enter the Loan Amount....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Loan Amount Term">Loan Amount Term</label>
+        <input
+          id="Loan Amount Term"
+          name="Loan Amount Term"
+          type="number" 
+          min="0"
+          placeholder="Enter the Loan Amount Term in days....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Credit History">Credit History</label>
+        <select id="Credit History" name="Credit History" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Property Area">Property Area</label>
+        <select id="Property Area" name="Property Area" required>
+          <option value="0">Urban</option>
+          <option value="1">Semiurban</option>
+          <option value="2">Rural</option>
+        </select>
+      </div>
+      <!-- <div class="form-row">
+        <label for="abstract">Abstract</label>
+        <textarea id="abstract" name="abstract"></textarea>
+        <div class="instructions">Describe your talk in 500 words or less</div>
+      </div>
+      <div class="form-row">
+        <label class="checkbox-label" for="available">
+          <input
+            id="available"
+            name="available"
+            type="checkbox"
+            value="is-available"
+          />
+          <span>I’m actually available the date of the talk</span>
+        </label>
+      </div> -->
+      <div class="form-row">
+        <button>Submit</button>
+      </div>
+    </form>
+  </body>
+</html>

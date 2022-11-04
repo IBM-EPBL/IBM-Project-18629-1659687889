@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>கடன் கணிப்பு</title>
+    <link rel="stylesheet" href="{{ url_for('static',     filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <header class="speaker-form-header">
+      <h1>SMART LOAN PREDICTION</h1>
+      <p><em>கடன் வாங்க எங்களிடம் வாங்க!!!</em></p>
+    </header>
+    {% block content %}
+    <form action="{{ url_for('home') }}" method="post" class="speaker-form">
+      <div >
+        <!-- <label > -->
+            {% if loan == 0 %}
+            <center>
+                <img style="width: 450px;height:300px" src="{{url_for('static', filename='css/0.png')}}"/>
+                <p style="text-align: center;font-size: xx-large;;margin-top: 20px;">{{result}}</p>
+              </center>
+            {% endif %}
+            {% if loan == 1 %}
+            <center>
+                <img style="width: 400px;height:386px" src="{{url_for('static', filename='css/1.png')}}"/>
+                <p style="text-align: center;font-size: xx-large;margin-top: 20px;">{{result}}</p>
+            </center>
+            {% endif %}
+                    
+        <!-- </label> -->
+      </div>
+      <br><br>
+      <div class="form-row">
+
+        <button style="text-align: center;margin-left: 160px;">Go To Home</button>
+      </div>
+    </form>
+    {% endblock %}
+  </body>
+</html>
