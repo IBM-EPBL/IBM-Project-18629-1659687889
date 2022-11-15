@@ -1,25 +1,18 @@
 from flask import Flask, render_template,request   
 import numpy as np
-import pandas
-import pickle
+# import pickle
 import requests
 
-# NOTE: you must manually set API_KEY below using information retrieved from your IBM Cloud account.
-API_KEY = "gty1PYR_T522sN6_r51HL2g88kxNxhyQXGVp5uPGmGFC"
+API_KEY = "q3P7ZbT4fGZALq9E6p2WnN8A673uSOz3MREKcwiy4H_V"
 token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey":
  API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'})
 mltoken = token_response.json()["access_token"]
-
 header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + mltoken}
 
+app = Flask(_name_)
 
+# model = pickle.load(open(r'rdf.pkl','rb'))
 
-
-
-
-
-app = Flask(__name__)
-model = pickle.load(open(r'rdf.pkl','rb'))
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template("home.html")
@@ -38,35 +31,19 @@ def evaluate():
     # input_feature=[np.array(input_feature)]
     print(input_feature)
     names = ['Gender', 'Married', 'Dependents', 'Education', 'Self Employed', 'Applicant Income', 'Coapplicant Income', 'Loan Amount', 'Loan_Amount_Term', 'Credit_History', 'Property_Area']
-
-    # NOTE: manually define and pass the array(s) of values to be scored in the next line
     payload_scoring = {"input_data": [{"fields": [names],
                                        "values": [input_feature]}]}
-
     response_scoring = requests.post(
-        'https://us-south.ml.cloud.ibm.com/ml/v4/deployments/a05131f3-dcb8-46cd-bf08-1c2ecf28cc86/predictions?version=2022-11-13',
+        'https://us-south.ml.cloud.ibm.com/ml/v4/deployments/cfb7dd73-4afb-4559-b3d2-b5087422dba4/predictions?version=2022-11-15',
         json=payload_scoring,
         headers={'Authorization': 'Bearer ' + mltoken})
     predictions = response_scoring.json()
     prediction = predictions['predictions'][0]['values'][0][0]
-    print("Scoring response")
-    print(response_scoring.json())
-    print(prediction)
-
-    # data = pandas.DataFrame(input_feature, columns=names)
-    # print(data)
-    # prediction=model.predict(data)
-    # print(prediction)
-    # prediction = int(prediction)
-    # print(type(prediction))
-    loan=1
+    print("Predictions are ",predictions)
     if (prediction == 0):
-        loan=0
-        return render_template("success.html",result = "Loan will Not be Approved",loan=loan)
+        return render_template("success.html",result = "Loan will Not be Approved",loan=0)
     else:
-        return render_template("success.html",result = "Loan will be Approved",loan=loan)
-    return render_template("success.html")
+        return render_template("success.html",result = "Loan will be Approved",loan=1)
 
-    
-if __name__ == "__main__":
+if _name_ == "_main_":
     app.run(debug=True)
